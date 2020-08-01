@@ -18,12 +18,12 @@ function testLogin() {
     });
 }
 
-testLogin();
+// testLogin();
 
 function testSignUp() {
   const userDetail = {
-    email_id: "atulk1@gmail.com",
-    password: "3434",
+    email_id: "atulk12@gmail.com",
+    password: "12345",
   };
 
   axios
@@ -33,7 +33,7 @@ function testSignUp() {
       console.log(error);
     });
 }
-// testSignUp();
+testSignUp();
 
 function testHealth() {
   axios

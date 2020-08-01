@@ -1,27 +1,23 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const userSchema = new Schema({
-  email_id: {
+const tweetSchema = new Schema({
+  tweet: {
     type: String,
-    index: {
-      unique: true,
-    },
   },
-  password: {
+  user_id: {
     type: String,
+    index: true,
   },
   created: {
     type: Date,
     default: Date.now,
   },
-
   updated: {
     type: Date,
     default: Date.now,
   },
 });
 
-const User = mongoose.model("Users", userSchema);
-
-module.exports = User;
+const Tweet = mongoose.model("Tweets", tweetSchema);
+module.exports = Tweet;
