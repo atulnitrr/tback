@@ -1,6 +1,22 @@
 const expressApp = require("../servers").expressApp;
 const Tweet = require("../model/Tweets");
 
+expressApp.get("/tweet/:tweet_id", (req, res) => {
+  // TODO --> Validation
+  const tweet_id = req.params.tweet_id;
+  Tweet.findById(tweet_id, (err, dbResult) => {
+    if (err) {
+      console.log(JSON.stringify(err, null, 2));
+      return res.status(500).send({
+        status: "FAILURE",
+        data: { msg: "Could not find " },
+      });
+    } else {
+      return res.send({ status: "SUCESS", data: dbResult });
+    }
+  });
+});
+
 expressApp.get("/tweet/user/:user_id", (req, res) => {
   // TODO : Validate
   const user_id = req.params.user_id;
@@ -19,6 +35,8 @@ expressApp.get("/tweet/user/:user_id", (req, res) => {
     }
   );
 });
+
+//////
 
 expressApp.post("/tweet", (req, res) => {
   // TODO : validation

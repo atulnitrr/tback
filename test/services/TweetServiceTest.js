@@ -2,6 +2,30 @@ const axios = require("axios");
 
 const PATH = "http://localhost:3033";
 
+// {"_id":{"$oid":"5f259053c189e1b1ffec9c80"},"created":{"$date":"2020-08-01T15:54:59.646Z"},"updated":{"$date":"2020-08-01T15:54:59.646Z"},"tweet":"Hello tweet  1627","user_id":"111","__v":0}
+
+// 5f259053c189e1b1ffec9c80
+
+function getTweetById() {
+  const tweet_id = "5f259053c189e1b1ffec9c80";
+  axios
+    .get(`${PATH}/tweet/${tweet_id}`)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      if (err.response) {
+        console.log(err.response);
+      } else if (err.request) {
+        // client never received a response, or request never left
+      } else {
+        // anything else
+      }
+    });
+}
+
+getTweetById();
+
 function getTweetByUser() {
   const user_id = "111";
   axios
@@ -16,7 +40,7 @@ function getTweetByUser() {
     });
 }
 
-getTweetByUser();
+// getTweetByUser();
 
 function postTweet() {
   const tweetData = {
