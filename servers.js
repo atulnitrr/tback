@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost:27017/twitDb", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useCreateIndex: true,
 });
 
 (() => {
@@ -18,19 +19,19 @@ mongoose.connect("mongodb://localhost:27017/twitDb", {
     console.log("we are connected");
     const kittenSchema = new mongoose.Schema({ name: String });
     const Kitten = mongoose.model("Kitten", kittenSchema);
-    const silence = new Kitten({ name: "Kitten dat" });
-    console.log(silence.name);
-    silence.save((error, data) => {
-      if (error) {
-        console.log(error);
-      } else {
-        console.log(data);
-      }
-    });
+    // const silence = new Kitten({ name: "Kitten dat" });
+    // console.log(silence.name);
+    // silence.save((error, data) => {
+    //   if (error) {
+    //     console.log(error);
+    //   } else {
+    //     console.log(data);
+    //   }
+    // });
 
-    Kitten.find((error, kittens) => {
-      console.log(kittens);
-    });
+    // Kitten.find((error, kittens) => {
+    //   console.log(kittens);
+    // });
   });
 })();
 

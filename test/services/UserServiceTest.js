@@ -2,10 +2,28 @@ const axios = require("axios");
 
 const PATH = "http://localhost:3033";
 
+function testLogin() {
+  const userDetail = {
+    email_id: "atulk1@gmail.com",
+    password: "34347",
+  };
+
+  axios
+    .post(`${PATH}/login`, userDetail)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+testLogin();
+
 function testSignUp() {
   const userDetail = {
-    email_id: "atulk@gmail.com",
-    password: "1234",
+    email_id: "atulk1@gmail.com",
+    password: "3434",
   };
 
   axios
@@ -15,7 +33,7 @@ function testSignUp() {
       console.log(error);
     });
 }
-testSignUp();
+// testSignUp();
 
 function testHealth() {
   axios
