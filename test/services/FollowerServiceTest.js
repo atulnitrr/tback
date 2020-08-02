@@ -31,12 +31,17 @@ function getFollwees() {
 }
 
 // getFolloweers();
-getFollwees();
+// getFollwees();
 
 function addFollower() {
+  // const followerDetails = {
+  //   user_id: Math.floor(Math.random() * 400),
+  //   follower_id: "123",
+  // };
+
   const followerDetails = {
-    user_id: Math.floor(Math.random() * 400),
-    follower_id: "123",
+    user_id: "5f261a987989a7c1b4794172",
+    follower_id: "5f261ad89658c2c1e1f14c6e",
   };
 
   axios
@@ -49,4 +54,4 @@ function addFollower() {
     });
 }
 
-// addFollower();
+addFollower();

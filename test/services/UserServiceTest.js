@@ -22,7 +22,7 @@ function testLogin() {
 
 function testSignUp() {
   const userDetail = {
-    email_id: "atulk12@gmail.com",
+    email_id: `atulkr${Math.floor(Math.random() * 3000)}@gmail.com`,
     password: "12345",
   };
 

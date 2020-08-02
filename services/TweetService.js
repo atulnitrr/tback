@@ -1,5 +1,6 @@
 const expressApp = require("../servers").expressApp;
 const Tweet = require("../model/Tweets");
+const Follower = require("../model/Followers");
 
 expressApp.get("/tweet/:tweet_id", (req, res) => {
   // TODO --> Validation
@@ -52,6 +53,22 @@ expressApp.post("/tweet", (req, res) => {
       });
     } else {
       return res.send({ status: "SUCCESS", data: { tweet_id: dbTweet._id } });
+    }
+  });
+});
+
+expressApp.get("/hometimeline/:user_id", (req, res) => {
+  //TODO : Validation
+  const user_id = req.params.user_id;
+  const tweets = [];
+  Follower.find({ user_id: user_id }, (err, dbResult) => {
+    if (err) {
+      return res
+        .status(500)
+        .send({ msg: "Error", err: JSON.stringify(err, null, 2) });
+    } else {
+      console.log(dbResult);
+      return res.send({ data: dbResult });
     }
   });
 });
