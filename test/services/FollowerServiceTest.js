@@ -40,8 +40,8 @@ function addFollower() {
   // };
 
   const followerDetails = {
-    user_id: "5f261a987989a7c1b4794172",
-    follower_id: "5f261ad89658c2c1e1f14c6e",
+    user_id: "5f259055c189e1b1ffec9c81",
+    follower_id: "5f261a987989a7c1b4794172",
   };
 
   axios

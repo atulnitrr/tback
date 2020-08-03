@@ -21,6 +21,7 @@ expressApp.get("/tweet/:tweet_id", (req, res) => {
 expressApp.get("/tweet/user/:user_id", (req, res) => {
   // TODO : Validate
   const user_id = req.params.user_id;
+
   Tweet.find(
     {
       user_id: user_id,
@@ -60,15 +61,31 @@ expressApp.post("/tweet", (req, res) => {
 expressApp.get("/hometimeline/:user_id", (req, res) => {
   //TODO : Validation
   const user_id = req.params.user_id;
-  const tweets = [];
-  Follower.find({ user_id: user_id }, (err, dbResult) => {
+  let tweets = [];
+  // find all followee and then find tweets
+
+  Follower.find({ follower_id: user_id }, (err, dbResult) => {
     if (err) {
       return res
         .status(500)
         .send({ msg: "Error", err: JSON.stringify(err, null, 2) });
     } else {
-      console.log(dbResult);
-      return res.send({ data: dbResult });
+      const allFollowee = dbResult.map((result) => result.user_id);
+
+      console.log(allFollowee);
+      Tweet.find()
+        .where("user_id")
+        .in(allFollowee)
+        .sort({ created: -1 })
+        .exec((err, allTweets) => {
+          if (err) {
+            return res
+              .status(500)
+              .send({ msg: "Error", err: JSON.stringify(err) });
+          } else {
+            return res.send({ user_id: user_id, home_tweets: allTweets });
+          }
+        });
     }
   });
 });
