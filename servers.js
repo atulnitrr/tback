@@ -37,6 +37,7 @@ mongoose.connect("mongodb://localhost:27017/twitDb", {
 
 const expressApp = express();
 
+expressApp.use(cors());
 expressApp.use(helmet());
 expressApp.use(bodyparser.json());
 expressApp.use(bodyparser.urlencoded({ extended: true }));
