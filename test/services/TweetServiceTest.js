@@ -28,7 +28,7 @@ function getTweetById() {
 // getTweetById();
 
 function getTweetByUser() {
-  const user_id = "5f259055c189e1b1ffec9c81";
+  const user_id = "5f261a987989a7c1b4794172";
   axios
     .get(`${PATH}/tweet/user/${user_id}`)
     .then((res) => {
@@ -41,7 +41,7 @@ function getTweetByUser() {
     });
 }
 
-// getTweetByUser();
+getTweetByUser();
 
 function postTweet() {
   const tweetData = {

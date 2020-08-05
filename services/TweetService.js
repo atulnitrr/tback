@@ -22,11 +22,10 @@ expressApp.get("/tweet/user/:user_id", (req, res) => {
   // TODO : Validate
   const user_id = req.params.user_id;
 
-  Tweet.find(
-    {
-      user_id: user_id,
-    },
-    (err, result) => {
+  Tweet.find()
+    .where("user_id", user_id)
+    .sort({ created: -1 })
+    .exec((err, result) => {
       if (err) {
         return res
           .status(500)
@@ -34,8 +33,22 @@ expressApp.get("/tweet/user/:user_id", (req, res) => {
       } else {
         return res.send({ status: "SUCCESS", tweets: result });
       }
-    }
-  );
+    });
+
+  // Tweet.find(
+  //   {
+  //     user_id: user_id,
+  //   },
+  //   (err, result) => {
+  //     if (err) {
+  //       return res
+  //         .status(500)
+  //         .send({ status: "FAILURE", err: JSON.stringify(err, null, 2) });
+  //     } else {
+  //       return res.send({ status: "SUCCESS", tweets: result });
+  //     }
+  //   }
+  // );
 });
 
 //////
@@ -61,7 +74,6 @@ expressApp.post("/tweet", (req, res) => {
 expressApp.get("/hometimeline/:user_id", (req, res) => {
   //TODO : Validation
   const user_id = req.params.user_id;
-  let tweets = [];
   // find all followee and then find tweets
 
   Follower.find({ follower_id: user_id }, (err, dbResult) => {
@@ -71,8 +83,6 @@ expressApp.get("/hometimeline/:user_id", (req, res) => {
         .send({ msg: "Error", err: JSON.stringify(err, null, 2) });
     } else {
       const allFollowee = dbResult.map((result) => result.user_id);
-
-      console.log(allFollowee);
       Tweet.find()
         .where("user_id")
         .in(allFollowee)

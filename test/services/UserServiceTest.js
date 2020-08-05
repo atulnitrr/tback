@@ -22,6 +22,8 @@ function testLogin() {
 
 function testSignUp() {
   const userDetail = {
+    first_name: "atul",
+    last_name: `kumar_${Math.floor(Math.random() * 3000)}@gmail.com`,
     email_id: `atulkr${Math.floor(Math.random() * 3000)}@gmail.com`,
     password: "12345",
   };
@@ -30,7 +32,7 @@ function testSignUp() {
     .post(`${PATH}/signUp`, userDetail)
     .then((res) => console.log(res.data))
     .catch((error) => {
-      console.log(error);
+      console.log(error.response);
     });
 }
 testSignUp();

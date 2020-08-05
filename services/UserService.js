@@ -45,9 +45,11 @@ expressApp.post("/login", (req, res) => {
 });
 
 expressApp.post("/signUp", (req, res) => {
-  const { email_id, password } = req.body;
+  const { email_id, password, first_name, last_name } = req.body;
   // TODO validataion
   const user = new User();
+  user.first_name = first_name;
+  user.last_name = last_name;
   user.email_id = email_id;
   user.password = password;
   bcrypt
@@ -68,10 +70,11 @@ expressApp.post("/signUp", (req, res) => {
         }
       });
     })
-    .catch((error) => {
+    .catch((err) => {
+      console.log(err);
       res.status(500).send({
         status: "Failure",
-        data: { reason: JSON.stringify(error, null, 2) },
+        data: { reason: JSON.stringify(err, null, 2) },
       });
     });
 });
