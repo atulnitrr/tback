@@ -29,7 +29,11 @@ expressApp.post("/login", (req, res) => {
           console.log("SUCCESS");
           return res.send({
             status: "SUCCESS",
-            data: { user_id: dbUser._id, email_id: dbUser.email_id },
+            data: {
+              user_id: dbUser._id,
+              email_id: dbUser.email_id,
+              first_name: dbUser.first_name,
+            },
           });
         } else {
           console.log("FAILURE");
@@ -65,7 +69,10 @@ expressApp.post("/signUp", (req, res) => {
         } else {
           res.send({
             status: "SUCCESS",
-            data: { user_id: dbUser._id, email_id: dbUser.email_id },
+            data: {
+              user_id: dbUser._id,
+              email_id: dbUser.email_id,
+            },
           });
         }
       });

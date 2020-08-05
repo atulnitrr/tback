@@ -4,8 +4,8 @@ const PATH = "http://localhost:3033";
 
 function testLogin() {
   const userDetail = {
-    email_id: "atulk1@gmail.com",
-    password: "34347",
+    email_id: "atulkumar458@gmail.com",
+    password: "12345",
   };
 
   axios
@@ -18,7 +18,7 @@ function testLogin() {
     });
 }
 
-// testLogin();
+testLogin();
 
 function testSignUp() {
   const userDetail = {
@@ -35,7 +35,7 @@ function testSignUp() {
       console.log(error.response);
     });
 }
-testSignUp();
+// testSignUp();
 
 function testHealth() {
   axios
