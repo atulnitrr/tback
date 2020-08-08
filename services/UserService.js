@@ -85,3 +85,18 @@ expressApp.post("/signUp", (req, res) => {
       });
     });
 });
+
+expressApp.get("/user/:user_id", (req, res) => {
+  const user_id = req.params.user_id;
+  User.find()
+    .where("_id", user_id)
+    .exec((err, dbRsult) => {
+      if (err) {
+        res.status(500).send({ status: "FAILURE", msg: "FAILURE" });
+      } else {
+        const user = dbRsult[0];
+        const { first_name, last_name, created } = user;
+        res.send({ first_name, last_name, created });
+      }
+    });
+});

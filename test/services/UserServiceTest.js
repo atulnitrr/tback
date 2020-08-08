@@ -1,4 +1,5 @@
 const axios = require("axios");
+const { default: Axios } = require("axios");
 
 const PATH = "http://localhost:3033";
 
@@ -18,8 +19,6 @@ function testLogin() {
     });
 }
 
-testLogin();
-
 function testSignUp() {
   const userDetail = {
     first_name: "atul",
@@ -35,7 +34,22 @@ function testSignUp() {
       console.log(error.response);
     });
 }
+
+function getUserInfo() {
+  const user_id = "5f2edbe6baad253f99dbe80d";
+  Axios.get(`${PATH}/user/${user_id}`)
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => console.log(err.response));
+}
+
+getUserInfo();
+console.log("after");
 // testSignUp();
+
+// testLogin();
+// testHealth();
 
 function testHealth() {
   axios
@@ -47,5 +61,3 @@ function testHealth() {
       console.log(error);
     });
 }
-
-// testHealth();
