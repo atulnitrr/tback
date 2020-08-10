@@ -44,8 +44,21 @@ function getUserInfo() {
     .catch((err) => console.log(err.response));
 }
 
-getUserInfo();
-console.log("after");
+async function getRecom() {
+  try {
+    console.log("fetching ");
+    const response = await axios.get(`${PATH}/get_recom/users`);
+    // console.log(response.data);
+    console.log("fetching donee ");
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+getRecom();
+console.log("Hello in data");
+// getUserInfo();
+
 // testSignUp();
 
 // testLogin();

@@ -100,3 +100,23 @@ expressApp.get("/user/:user_id", (req, res) => {
       }
     });
 });
+
+expressApp.get("/get_recom/users", (req, res) => {
+  User.find()
+    .skip(5)
+    .limit(10)
+    .exec((err, dbResult) => {
+      if (err) {
+        return res
+          .status(500)
+          .send({
+            status: "ERROR",
+            data: "Issue ",
+            err: JSON.stringify(err, 0, null),
+          });
+      } else {
+        console.log(dbResult.length);
+        return res.send(dbResult);
+      }
+    });
+});
