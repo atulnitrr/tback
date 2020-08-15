@@ -28,7 +28,7 @@ function getTweetById() {
 // getTweetById();
 
 function getTweetByUser() {
-  const user_id = "5f261a987989a7c1b4794172";
+  const user_id = "5f30a487283396c5a10ddb8e";
   axios
     .get(`${PATH}/tweet/user/${user_id}`)
     .then((res) => {
@@ -72,7 +72,7 @@ function getHomeTimeLine() {
     });
 }
 
-getHomeTimeLine();
+// getHomeTimeLine();
 
 // 5f259056c189e1b1ffec9c82
 // 5f259055c189e1b1ffec9c81

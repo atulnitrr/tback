@@ -36,7 +36,7 @@ function testSignUp() {
 }
 
 function getUserInfo() {
-  const user_id = "5f2edbe6baad253f99dbe80d";
+  const user_id = "5f30a487283396c5a10ddb8e";
   Axios.get(`${PATH}/user/${user_id}`)
     .then((res) => {
       console.log(res.data);
@@ -48,14 +48,15 @@ async function getRecom() {
   try {
     console.log("fetching ");
     const response = await axios.get(`${PATH}/get_recom/users`);
-    // console.log(response.data);
+    console.log(response.data);
     console.log("fetching donee ");
   } catch (err) {
     console.log(err);
   }
 }
 
-getRecom();
+// getRecom();
+// getUserInfo();
 console.log("Hello in data");
 // getUserInfo();
 
