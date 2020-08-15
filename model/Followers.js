@@ -10,6 +10,10 @@ const followerSchema = new Schema({
     type: String,
     index: true,
   },
+  following: {
+    type: Boolean,
+    default: false,
+  },
   created: {
     type: Date,
     default: Date.now,

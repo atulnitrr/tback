@@ -95,8 +95,8 @@ expressApp.get("/user/:user_id", (req, res) => {
         res.status(500).send({ status: "FAILURE", msg: "FAILURE" });
       } else {
         const user = dbRsult[0];
-        const { first_name, last_name, created } = user;
-        res.send({ first_name, last_name, created });
+        const { first_name, last_name, created, _id } = user;
+        res.send({ first_name, last_name, created, _id });
       }
     });
 });
@@ -107,16 +107,28 @@ expressApp.get("/get_recom/users", (req, res) => {
     .limit(10)
     .exec((err, dbResult) => {
       if (err) {
-        return res
-          .status(500)
-          .send({
-            status: "ERROR",
-            data: "Issue ",
-            err: JSON.stringify(err, 0, null),
-          });
+        return res.status(500).send({
+          status: "ERROR",
+          data: "Issue ",
+          err: JSON.stringify(err, 0, null),
+        });
       } else {
         console.log(dbResult.length);
-        return res.send(dbResult);
+        const userDetail = {
+          _id: "",
+          first_name: "",
+        };
+        return res.send(
+          dbResult.map((userInfo) => {
+            console.log(userInfo);
+            return {
+              _id: userInfo._id,
+              first_name: userInfo.first_name,
+              last_name: userInfo.last_name,
+              email_id: userInfo.email_id,
+            };
+          })
+        );
       }
     });
 });
