@@ -34,21 +34,6 @@ expressApp.get("/tweet/user/:user_id", (req, res) => {
         return res.send({ status: "SUCCESS", tweets: result });
       }
     });
-
-  // Tweet.find(
-  //   {
-  //     user_id: user_id,
-  //   },
-  //   (err, result) => {
-  //     if (err) {
-  //       return res
-  //         .status(500)
-  //         .send({ status: "FAILURE", err: JSON.stringify(err, null, 2) });
-  //     } else {
-  //       return res.send({ status: "SUCCESS", tweets: result });
-  //     }
-  //   }
-  // );
 });
 
 //////
@@ -82,7 +67,10 @@ expressApp.get("/hometimeline/:user_id", (req, res) => {
         .status(500)
         .send({ msg: "Error", err: JSON.stringify(err, null, 2) });
     } else {
-      const allFollowee = dbResult.map((result) => result.user_id);
+      const allFollowee = [
+        ...dbResult.map((result) => result.user_id),
+        user_id,
+      ];
       Tweet.find()
         .where("user_id")
         .in(allFollowee)

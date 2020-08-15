@@ -103,7 +103,7 @@ expressApp.get("/user/:user_id", (req, res) => {
 
 expressApp.get("/get_recom/users", (req, res) => {
   User.find()
-    .skip(5)
+    .skip(2)
     .limit(10)
     .exec((err, dbResult) => {
       if (err) {
@@ -120,7 +120,6 @@ expressApp.get("/get_recom/users", (req, res) => {
         };
         return res.send(
           dbResult.map((userInfo) => {
-            console.log(userInfo);
             return {
               _id: userInfo._id,
               first_name: userInfo.first_name,

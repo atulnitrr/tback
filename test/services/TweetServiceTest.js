@@ -60,11 +60,12 @@ function postTweet() {
 // postTweet();
 
 function getHomeTimeLine() {
-  const user_id = "5f261a987989a7c1b4794172";
+  const user_id = "5f2aa84f8130cd53566c5851";
 
   axios
     .get(`${PATH}/hometimeline/${user_id}`)
     .then((res) => {
+      console.log("Home timelie");
       console.log(res.data);
     })
     .catch((err) => {
@@ -72,20 +73,4 @@ function getHomeTimeLine() {
     });
 }
 
-// getHomeTimeLine();
-
-// 5f259056c189e1b1ffec9c82
-// 5f259055c189e1b1ffec9c81
-
-// function testAll() {
-//   Tweet.find()
-//     .exec()
-//     .then((data) => {
-//       console.log(data);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// }
-
-// testAll();
+getHomeTimeLine();
